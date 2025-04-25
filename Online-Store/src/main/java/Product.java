@@ -1,11 +1,11 @@
 public class Product {
-    //AV1051|JBL Bluetooth Speaker|89.95|Audio Video
 
     String id;
     String name;
     double price;
     String department;
 
+    // to create new instances of Product and set values
     public Product(String id, String name, double price, String department){
         this.id = id;
         this.name = name;
