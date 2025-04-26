@@ -21,9 +21,10 @@ public class Main {
     }
 
     public static int getHomeScreenAction() {
-        return 0;
+        //Get number user inputs and return it
+        System.out.println("1 - Inventory \n2 - Cart \n3 - Exit");
+        int userAction = Integer.parseInt(Utils.getUserInput("Please enter the number of where you'd like to go: "));
+        return userAction;
     }
-
-
 }
 
