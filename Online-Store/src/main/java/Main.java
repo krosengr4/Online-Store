@@ -4,21 +4,21 @@ public class Main {
         System.out.println("_____WELCOME TO THE ONLINE STORE_____");
         String filePath = "Online-Store/src/main/resources/products.csv";
 
-        int userHSAction;
+        int userAction;
 
+        while (true) {
+            userAction = getHomeScreenAction();
 
-        userHSAction = getHomeScreenAction();
-
-        switch (userHSAction) {
-            case 1:
+            if (userAction == 1) {
                 Inventory.displayInventoryMenu();
-            case 2:
+            } else if (userAction == 2) {
                 Cart.displayCartMenu();
-            case 3:
+            } else if (userAction == 3) {
                 System.out.println("Thank you for using the Online Store! \n\tPlease come again soon! :)");
                 break;
-            default:
+            } else {
                 System.err.println("ERROR: Please choose a number between 1 and 3!");
+            }
         }
 
     }
