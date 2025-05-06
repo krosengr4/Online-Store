@@ -1,13 +1,13 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.HashMap;
+
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("\t\t_____WELCOME TO THE ONLINE STORE_____");
         displayHomeScreen();
         System.out.println("Thank you for shopping with us! \nWe will see you soon!");
-
-
-
-
     }
 
     public static void displayHomeScreen() {
@@ -29,6 +29,35 @@ public class Main {
             }
 
         }
+    }
+
+    public static HashMap<String, Product> loadInventory() {
+
+        try {
+            BufferedReader bufReader = new BufferedReader(new FileReader(Utils.filePath));
+
+            String input;
+
+            while ((input = bufReader.readLine()) != null) {
+                String [] lineData = input.split("\\|");
+
+                if(lineData[0].equals("SKU")) {
+                    continue;
+                }
+
+                String id = lineData[0];
+                String productName = lineData[1];
+                double productPrice = Double.parseDouble(lineData[2]);
+                String productDepartment = lineData[3];
+
+                Product newProduct = new Product(id, productName, productPrice, productDepartment);
+                Utils.storeInventory.put(newProduct.getName(), newProduct);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return Utils.storeInventory;
     }
 }
 
