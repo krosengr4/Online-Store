@@ -28,7 +28,7 @@ public class Cart {
         ArrayList<Product> userCart = Inventory.userCart;
 
         if (userCart.isEmpty()) {
-            System.out.println("There are no items in your cart.");
+            System.out.println("There are no items in your cart. \nYou can add items to your cart from inventory screen!");
         } else {
             for (Product p : userCart) {
                 System.out.println(p.getName() + " $" + p.getPrice());

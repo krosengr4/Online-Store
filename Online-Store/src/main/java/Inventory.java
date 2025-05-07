@@ -55,21 +55,22 @@ public class Inventory {
     public static void addToCart() {
 
         ArrayList<Product> inventory = Main.loadInventory();
+        boolean continueToAdd = true;
 
-        String productToAdd = Utils.getUserInput("Enter the product you would like to add: ");
+        while (continueToAdd) {
+            String productToAdd = Utils.getUserInput("Enter the product you would like to add: ").trim();
 
-        for (Product p : inventory) {
-            if (productToAdd.equalsIgnoreCase(p.getName())) {
-                Product cartProduct = new Product(p.getId(), p.getName(), p.getPrice(), p.getDepartment());
-                userCart.add(cartProduct);
+            for (Product p : inventory) {
+                if (productToAdd.equalsIgnoreCase(p.getName())) {
+                    Product cartProduct = new Product(p.getId(), p.getName(), p.getPrice(), p.getDepartment());
+                    userCart.add(cartProduct);
+                }
+            }
+            String userOption = Utils.getUserInput("Would you like to add another item? (Y or N): ").trim();
+            if (userOption.equalsIgnoreCase("n")) {
+                continueToAdd = false;
             }
         }
-
-        System.out.println("Items in your cart: ");
-        for (Product pCart : userCart) {
-            System.out.println(pCart.getName() + " $" + pCart.getPrice());
-        }
-        Utils.pauseApp();
     }
 
 }
