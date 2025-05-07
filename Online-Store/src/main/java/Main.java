@@ -33,6 +33,8 @@ public class Main {
 
     public static HashMap<String, Product> loadInventory() {
 
+        HashMap<String, Product> storeInventory = new HashMap<>();
+
         try {
             BufferedReader bufReader = new BufferedReader(new FileReader(Utils.filePath));
 
@@ -51,13 +53,13 @@ public class Main {
                 String productDepartment = lineData[3];
 
                 Product newProduct = new Product(id, productName, productPrice, productDepartment);
-                Utils.storeInventory.put(newProduct.getName(), newProduct);
+                storeInventory.put(newProduct.getName(), newProduct);
             }
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return Utils.storeInventory;
+        return storeInventory;
     }
 }
 

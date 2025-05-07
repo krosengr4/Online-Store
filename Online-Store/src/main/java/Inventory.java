@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Inventory {
 
     public static void displayInventoryMenu() {
@@ -20,7 +22,17 @@ public class Inventory {
 
     public static void searchProduct() {
 
+        HashMap<String, Product> inventory = Main.loadInventory();
+
         String productSearch = Utils.getUserInput("Enter a product name: ");
+        Product matchProduct = inventory.get(productSearch);
+
+        if (matchProduct == null) {
+            System.out.println("We don't have that product in stock.");
+        } else {
+            System.out.println("Here is what we have in stock: \n" + matchProduct.getName() + " $" + matchProduct.getPrice());
+        }
+        Utils.pauseApp();
     }
 
     public static void addToCart() {
