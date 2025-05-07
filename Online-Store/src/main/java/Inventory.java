@@ -3,11 +3,13 @@ import java.util.HashMap;
 
 public class Inventory {
 
+    static ArrayList<Product> userCart = new ArrayList<>();
+
     public static void displayInventoryMenu() {
 
         boolean ifContinue = true;
 
-        while(ifContinue) {
+        while (ifContinue) {
             System.out.println("\n\t\t---INVENTORY---");
             System.out.println("OPTIONS: \n\t1 - Display All Products \n\t2 - Search For Product \n\t3 - Add Product to Cart \n\t4 - Return to Home Page");
             String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
@@ -30,7 +32,7 @@ public class Inventory {
             System.out.println("We do not have any products at the moment.");
         }
 
-        for (Product p: inventory) {
+        for (Product p : inventory) {
             System.out.println("Product Name: " + p.getName() + "\nPrice : $" + p.getPrice());
         }
         Utils.pauseApp();
@@ -51,7 +53,23 @@ public class Inventory {
     }
 
     public static void addToCart() {
-        System.out.println("Add to cart");
+
+        ArrayList<Product> inventory = Main.loadInventory();
+
+        String productToAdd = Utils.getUserInput("Enter the product you would like to add: ");
+
+        for (Product p : inventory) {
+            if (productToAdd.equalsIgnoreCase(p.getName())) {
+                Product cartProduct = new Product(p.getId(), p.getName(), p.getPrice(), p.getDepartment());
+                userCart.add(cartProduct);
+            }
+        }
+
+        System.out.println("Items in your cart: ");
+        for (Product pCart : userCart) {
+            System.out.println(pCart.getName() + " $" + pCart.getPrice());
+        }
+        Utils.pauseApp();
     }
 
 }
