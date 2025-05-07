@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Inventory {
 
-    static ArrayList<Product> userCart = new ArrayList<>();
+    public static ArrayList<Product> userCart = new ArrayList<>();
 
     public static void displayInventoryMenu() {
 
