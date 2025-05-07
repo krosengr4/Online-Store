@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -31,9 +32,9 @@ public class Main {
         }
     }
 
-    public static HashMap<String, Product> loadInventory() {
+    public static ArrayList<Product> loadInventory() {
 
-        HashMap<String, Product> storeInventory = new HashMap<>();
+        ArrayList<Product> storeInventory = new ArrayList<>();
 
         try {
             BufferedReader bufReader = new BufferedReader(new FileReader(Utils.filePath));
@@ -53,7 +54,7 @@ public class Main {
                 String productDepartment = lineData[3];
 
                 Product newProduct = new Product(id, productName, productPrice, productDepartment);
-                storeInventory.put(newProduct.getName(), newProduct);
+                storeInventory.add(newProduct);
             }
 
         } catch (Exception e) {

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory {
@@ -8,29 +9,40 @@ public class Inventory {
 
         while(ifContinue) {
             System.out.println("\n\t\t---INVENTORY---");
-            System.out.println("OPTIONS: \n\t1 - Search For Product \n\t2 - Add Product to Cart \n\t3 - Return to Home Page");
+            System.out.println("OPTIONS: \n\t1 - Display All Products \n\t2 - Search For Product \n\t3 - Add Product to Cart \n\t4 - Return to Home Page");
             String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
-                case "1" -> searchProduct();
-                case "2" -> addToCart();
-                case "3" -> ifContinue = false;
-                default -> System.err.println("ERROR! Please enter a number between 1 and 3!");
+                case "2" -> searchProduct();
+                case "3" -> addToCart();
+                case "4" -> ifContinue = false;
+                default -> System.err.println("ERROR! Please enter a number between 1 and 4!");
             }
         }
     }
 
+    public static void displayProducts() {
+        System.out.println("\t---ALL PRODUCTS---");
+        ArrayList<Product> inventory = Main.loadInventory();
+
+        for (int i = 0; i < inventory.size(); i++) {
+
+
+
+        }
+
+    }
+
     public static void searchProduct() {
 
-        HashMap<String, Product> inventory = Main.loadInventory();
+        ArrayList<Product> inventory = Main.loadInventory();
 
         String productSearch = Utils.getUserInput("Enter a product name: ");
-        Product matchProduct = inventory.get(productSearch);
 
-        if (matchProduct == null) {
-            System.out.println("We don't have that product in stock.");
-        } else {
-            System.out.println("Here is what we have in stock: \n" + matchProduct.getName() + " $" + matchProduct.getPrice());
+        for (Product p : inventory) {
+            if (productSearch.equalsIgnoreCase(p.getName())) {
+                System.out.println("\nIn Stock: \n" + p.getName() + " $" + p.getPrice());
+            }
         }
         Utils.pauseApp();
     }
