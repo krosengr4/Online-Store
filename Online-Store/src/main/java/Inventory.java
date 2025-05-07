@@ -64,8 +64,10 @@ public class Inventory {
                 if (productToAdd.equalsIgnoreCase(p.getName())) {
                     Product cartProduct = new Product(p.getId(), p.getName(), p.getPrice(), p.getDepartment());
                     userCart.add(cartProduct);
+                    System.out.println("Success! You have added " + p.getName() + " to your cart!");
                 }
             }
+            Utils.pauseApp();
             String userOption = Utils.getUserInput("Would you like to add another item? (Y or N): ").trim();
             if (userOption.equalsIgnoreCase("n")) {
                 continueToAdd = false;

@@ -7,8 +7,8 @@ public class Cart {
 
         while (ifContinue) {
             System.out.println("\n\t\t---YOUR CART---");
-        System.out.println("OPTIONS: \n\t1 - Display your cart \n\t2 - Check Out \n\t3 - Remove a product from the cart \n\t4 - Return to Home Page");
-        String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
+            System.out.println("OPTIONS: \n\t1 - Display your cart \n\t2 - Check Out \n\t3 - Remove a product from the cart \n\t4 - Return to Home Page");
+            String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
                 case "1" -> displayCart();
@@ -18,27 +18,30 @@ public class Cart {
                 default -> System.out.println("ERROR! Please Enter a Number Between 1-4");
             }
         }
-
-
     }
 
     public static void displayCart() {
-        System.out.println("\t---YOUR CART---");
 
         ArrayList<Product> userCart = Inventory.userCart;
 
         if (userCart.isEmpty()) {
             System.out.println("There are no items in your cart. \nYou can add items to your cart from inventory screen!");
         } else {
+            System.out.println("YOUR CART: ");
+            double totalPrice = 0;
             for (Product p : userCart) {
                 System.out.println(p.getName() + " $" + p.getPrice());
+                totalPrice += p.getPrice();
             }
+            System.out.println("Total Amount: $" + totalPrice);
         }
         Utils.pauseApp();
     }
 
     public static void checkOut() {
-        System.out.println("Check Out");
+        System.out.println("\t---CHECKOUT---");
+
+        displayCart();
     }
 
     public static void removeItem() {
