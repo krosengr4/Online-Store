@@ -13,6 +13,7 @@ public class Inventory {
             String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
+                case "1" -> displayProducts();
                 case "2" -> searchProduct();
                 case "3" -> addToCart();
                 case "4" -> ifContinue = false;
@@ -25,12 +26,14 @@ public class Inventory {
         System.out.println("\t---ALL PRODUCTS---");
         ArrayList<Product> inventory = Main.loadInventory();
 
-        for (int i = 0; i < inventory.size(); i++) {
-
-
-
+        if (inventory.isEmpty()) {
+            System.out.println("We do not have any products at the moment.");
         }
 
+        for (Product p: inventory) {
+            System.out.println("Product Name: " + p.getName() + "\nPrice : $" + p.getPrice());
+        }
+        Utils.pauseApp();
     }
 
     public static void searchProduct() {
