@@ -71,6 +71,9 @@ public class Inventory {
             String userOption = Utils.getUserInput("Would you like to add another item? (Y or N): ").trim();
             if (userOption.equalsIgnoreCase("n")) {
                 continueToAdd = false;
+            } else if (!userOption.equalsIgnoreCase("y")){
+                System.err.println("Please enter y or n");
+                break;
             }
         }
     }

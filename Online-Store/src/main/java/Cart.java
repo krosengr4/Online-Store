@@ -33,13 +33,15 @@ public class Cart {
                 System.out.println(p.getName() + " $" + p.getPrice());
                 totalPrice += p.getPrice();
             }
-            System.out.printf("Total Amount: $%.2f", totalPrice);
+            System.out.printf("\nTotal Amount: $%.2f", totalPrice);
         }
         Utils.pauseApp();
     }
 
     public static void checkOut() {
         displayCart();
+
+        ArrayList<Product> userCart = Inventory.userCart;
 
         System.out.println("\t---CHECKOUT---");
 
@@ -54,11 +56,26 @@ public class Cart {
             System.err.println("Error! Please enter either c or d.");
         }
         System.out.println("Thank you for your purchase! You will be sent an email with details of your purchase!");
+        userCart.clear();
+        Utils.pauseApp();
     }
 
     public static void removeItem() {
-        System.out.println("Remove Item");
+        ArrayList<Product> userCart = Inventory.userCart;
+
+        if (userCart.isEmpty()) {
+            System.out.println("There are no items in your cart. \nYou can add items to your cart from inventory screen!");
+        } else {
+            System.out.println("\t---ITEMS IN YOUR CART---");
+            for (Product p : userCart) {
+                System.out.println(p.getName());
+            }
+            String userRemove = Utils.getUserInput("\nEnter the name of the item you would like to remove: ").trim();
+
+            userCart.removeIf(p -> userRemove.equalsIgnoreCase(p.getName()));
+            System.out.println(userRemove + "has been removed.");
+            Utils.pauseApp();
+        }
+
     }
-
-
 }
