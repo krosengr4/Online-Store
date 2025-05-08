@@ -21,27 +21,39 @@ public class Cart {
     }
 
     public static void displayCart() {
+        System.out.println("\t---YOUR CART---");
 
         ArrayList<Product> userCart = Inventory.userCart;
 
         if (userCart.isEmpty()) {
             System.out.println("There are no items in your cart. \nYou can add items to your cart from inventory screen!");
         } else {
-            System.out.println("YOUR CART: ");
             double totalPrice = 0;
             for (Product p : userCart) {
                 System.out.println(p.getName() + " $" + p.getPrice());
                 totalPrice += p.getPrice();
             }
-            System.out.println("Total Amount: $" + totalPrice);
+            System.out.printf("Total Amount: $%.2f", totalPrice);
         }
         Utils.pauseApp();
     }
 
     public static void checkOut() {
+        displayCart();
+
         System.out.println("\t---CHECKOUT---");
 
-        displayCart();
+        System.out.println("OPTIONS:\n\tC - Credit \n\tD - Debit");
+        String userPayment = Utils.getUserInput("How would you like to pay: ").trim();
+
+        if (userPayment.equalsIgnoreCase("c") || userPayment.equalsIgnoreCase("d")) {
+            String userCCNumber = Utils.getUserInput("Enter your card number: ");
+            String userCCExpiration = Utils.getUserInput("Enter the expiration date: ");
+            String userCCCVV = Utils.getUserInput("Enter the 3 digit CVV: ");
+        } else {
+            System.err.println("Error! Please enter either c or d.");
+        }
+        System.out.println("Thank you for your purchase! You will be sent an email with details of your purchase!");
     }
 
     public static void removeItem() {
