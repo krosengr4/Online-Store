@@ -58,4 +58,19 @@ public class UserInterface {
 		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 3);
 	}
 
+	public int displayAdminScreen() {
+		System.out.println("\n\t\t--------ADMIN--------");
+		System.out.println("""
+					---OPTIONS---
+				1 - Add A Product
+				2 - Update Product
+				3 - Delete Product
+				4 - Add A Category
+				5 - Delete A Category
+				0 - Return Home
+				""");
+
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 5);
+	}
+
 }
