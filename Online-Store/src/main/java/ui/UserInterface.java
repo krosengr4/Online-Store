@@ -22,7 +22,7 @@ public class UserInterface {
 		System.out.println("""
 					---OPTION---
 				1 - Display All Products
-				2 - Display Products By Category
+				2 - Display Products By Department
 				3 - Search Product By Name
 				4 - Add Product To Cart
 				0 - Return Home

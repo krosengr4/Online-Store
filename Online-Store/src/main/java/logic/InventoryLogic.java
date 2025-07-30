@@ -14,8 +14,9 @@ public class InventoryLogic {
 
 			switch(userChoice) {
 				case 1 -> displayAll();
-				case 2 -> displayByCategory();
+				case 2 -> displayByDepartment();
 				case 3 -> searchByName();
+				case 4 -> addToCart();
 				case 0 -> ifContinue = false;
 			}
 		}
@@ -25,7 +26,7 @@ public class InventoryLogic {
 
 	}
 
-	private static void displayByCategory() {
+	private static void displayByDepartment() {
 
 	}
 
