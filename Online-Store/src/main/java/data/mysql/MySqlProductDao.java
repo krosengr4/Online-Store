@@ -1,6 +1,7 @@
 package data.mysql;
 
 import data.ProductDao;
+import models.Printable;
 import models.Product;
 
 import javax.sql.DataSource;
@@ -63,8 +64,8 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
-	public List<Product> getByDepartment(int departmentId) {
-		List<Product> productList = new ArrayList<>();
+	public List<Printable> getByDepartment(int departmentId) {
+		List<Printable> productList = new ArrayList<>();
 		String query = """
 				SELECT * FROM products
 				WHERE department_id = ?;
@@ -87,8 +88,8 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
-	public List<Product> searchByName(String name) {
-		List<Product> productList = new ArrayList<>();
+	public List<Printable> searchByName(String name) {
+		List<Printable> productList = new ArrayList<>();
 		String query = """
 				SELECT * FROM products
 				WHERE name LIKE ?;
@@ -111,8 +112,8 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
-	public List<Product> searchByPrice(double minPrice, double maxPrice) {
-		List<Product> productList = new ArrayList<>();
+	public List<Printable> searchByPrice(double minPrice, double maxPrice) {
+		List<Printable> productList = new ArrayList<>();
 		String query = """
 				SELECT * FROM products
 				WHERE price BETWEEN ? AND ?;

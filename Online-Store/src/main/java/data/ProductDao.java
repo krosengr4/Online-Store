@@ -1,5 +1,6 @@
 package data;
 
+import models.Printable;
 import models.Product;
 
 import java.util.List;
@@ -10,11 +11,11 @@ public interface ProductDao {
 
 	Product getById(int productId);
 
-	List<Product> getByDepartment(int departmentId);
+	List<Printable> getByDepartment(int departmentId);
 
-	List<Product> searchByName(String name);
+	List<Printable> searchByName(String name);
 
-	List<Product> searchByPrice(double minPrice, double maxPrice);
+	List<Printable> searchByPrice(double minPrice, double maxPrice);
 
 	void add(Product product);
 

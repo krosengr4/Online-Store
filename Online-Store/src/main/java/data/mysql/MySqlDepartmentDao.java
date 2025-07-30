@@ -2,6 +2,7 @@ package data.mysql;
 
 import data.DepartmentDao;
 import models.Department;
+import models.Printable;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -18,8 +19,8 @@ public class MySqlDepartmentDao extends MySqlDaoBase implements DepartmentDao {
 	}
 
 	@Override
-	public List<Department> getAll() {
-		List<Department> departmentList = new ArrayList<>();
+	public List<Printable> getAll() {
+		List<Printable> departmentList = new ArrayList<>();
 		String query = "SELECT * FROM departments;";
 
 		try(Connection connection = getConnection()) {
