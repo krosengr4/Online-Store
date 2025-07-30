@@ -1,5 +1,5 @@
-import java.sql.Struct;
-import java.util.HashMap;
+package utils;
+
 import java.util.Scanner;
 
 public class Utils {
