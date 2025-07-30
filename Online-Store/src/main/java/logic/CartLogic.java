@@ -36,14 +36,17 @@ public class CartLogic {
 		Cart cart = cartDao.getCart();
 
 		printData(cartItems);
-		System.out.println("_________________________");
+		System.out.println("\n_______________________________________________");
 		cart.print();
 
 		Utils.pauseApp();
 	}
 
 	private static void removeItem() {
+		int productId = Utils.getUserInputInt("Enter the Product ID to remove:\n");
+		cartDao.remove(productId);
 
+		Utils.pauseApp();
 	}
 
 	private static void checkout() {

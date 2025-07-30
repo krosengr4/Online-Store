@@ -35,7 +35,7 @@ public class Cart implements Printable{
 	}
 
 	public void print() {
-		System.out.println("-----YOUR CART-----");
+		System.out.println("\t-----YOUR CART-----");
 		System.out.println("-----------------------------------------------");
 
 		System.out.println("Total Items: " + items.size());
