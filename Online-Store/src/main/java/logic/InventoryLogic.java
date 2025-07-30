@@ -1,8 +1,11 @@
 package logic;
 
 import config.DatabaseConfig;
+import data.DepartmentDao;
 import data.ProductDao;
+import data.mysql.MySqlDepartmentDao;
 import data.mysql.MySqlProductDao;
+import models.Department;
 import models.Product;
 import ui.UserInterface;
 import utils.Utils;
@@ -13,6 +16,7 @@ public class InventoryLogic {
 
 	static UserInterface ui = new UserInterface();
 	static ProductDao productDao = new MySqlProductDao(DatabaseConfig.setConnection());
+	static DepartmentDao departmentDao = new MySqlDepartmentDao(DatabaseConfig.setConnection());
 
 	public static void processInventoryScreen() {
 		boolean ifContinue = true;
@@ -46,7 +50,17 @@ public class InventoryLogic {
 	}
 
 	private static void displayAllDepartments() {
+		List<Department> departmentList = departmentDao.getAll();
 
+		if(departmentList.isEmpty()) {
+			System.out.println("There are no departments to display...");
+		} else {
+			for(Department department : departmentList) {
+				department.print();
+			}
+		}
+
+		Utils.pauseApp();
 	}
 
 	private static void searchByName() {
