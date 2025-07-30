@@ -85,4 +85,15 @@ public class UserInterface {
 		return Utils.getUserInputIntMinMax("Enter Here:\n", 1, 2);
 	}
 
+	public int displayCheckoutScreen() {
+		System.out.println("\t---CHECKOUT---");
+		System.out.println("""
+					Credit or debit?
+				1 - Credit
+				2 - Debit
+				""");
+
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 1, 2);
+	}
+
 }
