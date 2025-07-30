@@ -38,6 +38,31 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
+	public Product getById(int productId) {
+		String query = """
+				SELECT * FROM products
+				WHERE product_id = ?;
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, productId);
+
+			ResultSet results = statement.executeQuery();
+			if(results.next()) {
+				return mapRow(results);
+			} else {
+				System.out.println("Could not find a product with that ID...");
+			}
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return null;
+	}
+
+	@Override
 	public List<Product> getByDepartment(int departmentId) {
 		List<Product> productList = new ArrayList<>();
 		String query = """
