@@ -27,4 +27,8 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 	//endregion
+
+	public int getProductId() {
+		return this.product.getProductId();
+	}
 }
