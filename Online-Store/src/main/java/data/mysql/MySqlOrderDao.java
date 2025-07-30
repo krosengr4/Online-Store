@@ -90,6 +90,40 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 		return lineItemsList;
 	}
 
+	@Override
+	public Order add(Order order) {
+		String query = """
+				INSERT INTO orders (date, name, address, city, state)
+				VALUES (?, ?, ?, ?, ?);
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			statement.setTimestamp(1, Timestamp.valueOf(order.getDateTime()));
+			statement.setString(2, order.getCustomerName());
+			statement.setString(3, order.getAddress());
+			statement.setString(4, order.getCity());
+			statement.setString(5, order.getState());
+
+			int rows = statement.executeUpdate();
+			if(rows > 0) {
+				ResultSet key = statement.getGeneratedKeys();
+
+				 if(key.next()) {
+					 int orderId = key.getInt(1);
+					 return getById(orderId);
+				 }
+			} else {
+				System.err.println("ERROR! Could not add the order!!!");
+			}
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return null;
+	}
+
 
 	private Order mapRow(ResultSet result) throws SQLException {
 		int orderId = result.getInt("order_id");
