@@ -27,4 +27,11 @@ public class Department {
 		this.name = name;
 	}
 	//endregion
+
+	public void print() {
+		System.out.println("-----DEPARTMENT-----");
+		System.out.println("Department ID: " + this.departmentId);
+		System.out.println("Department Name: " + this.name);
+		System.out.println("----------------------------------------------");
+	}
 }
