@@ -14,7 +14,7 @@ public class UserInterface {
 				0 - Exit
 				""");
 
-		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 2);
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 3);
 	}
 
 	public int displayInventory() {

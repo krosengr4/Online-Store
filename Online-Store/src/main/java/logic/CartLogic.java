@@ -5,7 +5,9 @@ import data.CartDao;
 import data.mysql.MySqlCartDao;
 import models.Cart;
 import models.CartItem;
+import models.Printable;
 import ui.UserInterface;
+import utils.Utils;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class CartLogic {
 		boolean ifContinue = true;
 
 		while(ifContinue) {
-			int userChoice = ui.displayInventory();
+			int userChoice = ui.displayCart();
 
 			switch(userChoice) {
 				case 1 -> displayCart();
@@ -30,7 +32,14 @@ public class CartLogic {
 	}
 
 	private static void displayCart() {
+		List<CartItem> cartItems = cartDao.getCartItems();
+		Cart cart = cartDao.getCart();
 
+		printData(cartItems);
+		System.out.println("_________________________");
+		cart.print();
+
+		Utils.pauseApp();
 	}
 
 	private static void removeItem() {
@@ -39,6 +48,16 @@ public class CartLogic {
 
 	private static void checkout() {
 
+	}
+
+	private static void printData(List<CartItem> list) {
+		if(list.isEmpty()) {
+			System.out.println("There are no items in your cart...");
+		} else {
+			for(Printable item : list) {
+				item.print();
+			}
+		}
 	}
 
 }
