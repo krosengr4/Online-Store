@@ -38,6 +38,7 @@ public class CartItem implements Printable{
 
 	public void print() {
 		System.out.println("\t-----CART ITEM-----");
+		System.out.println("Product ID: " + this.product.getProductId());
 		System.out.println("Product Name: " + this.product.getName());
 		System.out.println("Quantity: " + this.quantity);
 		System.out.println("Price: $" + this.getPrice());

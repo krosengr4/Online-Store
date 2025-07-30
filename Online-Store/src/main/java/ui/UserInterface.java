@@ -82,7 +82,7 @@ public class UserInterface {
 				2 - No
 				""");
 
-		Utils.getUserInputIntMinMax("Enter Here:\n", 1, 2);
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 1, 2);
 	}
 
 }
