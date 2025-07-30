@@ -8,14 +8,16 @@ public interface ProductDao {
 
 	List<Product> getAll();
 
-	List<Product> getByDepartment();
+	List<Product> getByDepartment(int departmentId);
 
-	List<Product> searchByName();
+	List<Product> searchByName(String name);
 
-	void add();
+	List<Product> searchByPrice(double minPrice, double maxPrice);
 
-	void update();
+	void add(Product product);
 
-	void delete();
+	void update(int productId, Product product);
+
+	void delete(int productId);
 
 }

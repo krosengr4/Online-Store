@@ -24,7 +24,8 @@ public class UserInterface {
 				1 - Display All Products
 				2 - Display Products By Department
 				3 - Search Product By Name
-				4 - Add Product To Cart
+				4 - Search Products By Price
+				5 - Add Product To Cart
 				0 - Return Home
 				""");
 

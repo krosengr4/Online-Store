@@ -16,7 +16,8 @@ public class InventoryLogic {
 				case 1 -> displayAll();
 				case 2 -> displayByDepartment();
 				case 3 -> searchByName();
-				case 4 -> addToCart();
+				case 4 -> searchByPrice();
+				case 5 -> addToCart();
 				case 0 -> ifContinue = false;
 			}
 		}
@@ -34,7 +35,10 @@ public class InventoryLogic {
 
 	}
 
+	private static void searchByPrice(){}
+
 	private static void addToCart() {
 
 	}
+
 }
