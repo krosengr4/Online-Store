@@ -125,6 +125,26 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 	}
 
 	@Override
+	public void addLineItem(OrderLineItems lineItem) {
+		String query = """
+				INSERT INTO order_line_items (order_id, product_id, quantity, sales_price)
+				VALUES (?, ?, ?, ?);
+				""";
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, lineItem.getOrderId());
+			statement.setInt(2, lineItem.getProductId());
+			statement.setInt(3, lineItem.getQuantity());
+			statement.setBigDecimal(4, lineItem.getSalesPrice());
+
+			statement.executeUpdate();
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
 	public void deleteLineItems(int orderId) {
 		String query = """
 				DELETE FROM order_line_items
