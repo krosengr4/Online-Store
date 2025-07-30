@@ -2,8 +2,10 @@ package data.mysql;
 
 import data.OrderDao;
 import models.Order;
+import models.OrderLineItems;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -56,6 +58,36 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 			throw new RuntimeException(e);
 		}
 		return null;
+	}
+
+	@Override
+	public List<OrderLineItems> getLineItems(int orderId) {
+		List<OrderLineItems> lineItemsList = new ArrayList<>();
+		String query = """
+				SELECT * FROM order_line_items
+				WHERE order_id = ?;
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, orderId);
+
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				int lineItemId = result.getInt("line_item_id");
+				int newOrderId = result.getInt("order_id");
+				int productId = result.getInt("product_id");
+				int quantity = result.getInt("quantity");
+				BigDecimal salesPrice = result.getBigDecimal("sales_price");
+
+				lineItemsList.add(new OrderLineItems(lineItemId, newOrderId, productId, quantity, salesPrice));
+			}
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return lineItemsList;
 	}
 
 

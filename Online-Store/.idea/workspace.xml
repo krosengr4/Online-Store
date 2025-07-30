@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b78eaf02-4f9e-4196-812e-84fafd531ce7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlOrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlOrderDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
