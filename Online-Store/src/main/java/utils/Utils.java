@@ -61,4 +61,10 @@ public class Utils {
 		myScanner.nextLine();
 	}
 
+	//! Major Security flaw
+	public static boolean passwordCheck(String userInput) {
+		String password = System.getenv("SQL_PASSWORD");
+		return userInput.equals(password);
+	}
+
 }
