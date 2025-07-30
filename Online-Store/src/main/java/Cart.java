@@ -1,3 +1,4 @@
+import models.Product;
 import utils.Utils;
 
 import java.util.ArrayList;

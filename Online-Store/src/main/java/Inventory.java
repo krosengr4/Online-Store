@@ -1,3 +1,4 @@
+import models.Product;
 import utils.Utils;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Inventory {
 
         while (ifContinue) {
             System.out.println("\n\t\t---INVENTORY---");
-            System.out.println("OPTIONS: \n\t1 - Display All Products \n\t2 - Search For Product \n\t3 - Add Product to Cart \n\t4 - Return to Home Page");
+            System.out.println("OPTIONS: \n\t1 - Display All Products \n\t2 - Search For models.Product \n\t3 - Add models.Product to Cart \n\t4 - Return to Home Page");
             String userAction = Utils.getUserInput("Enter the number of what you'd like to do: ").trim();
 
             switch (userAction) {
@@ -34,7 +35,7 @@ public class Inventory {
         }
 
         for (Product p : inventory) {
-            System.out.println("Product Name: " + p.getName() + "\nPrice : $" + p.getPrice());
+            System.out.println("models.Product Name: " + p.getName() + "\nPrice : $" + p.getPrice());
         }
         Utils.pauseApp();
     }
@@ -63,7 +64,7 @@ public class Inventory {
 
             for (Product p : inventory) {
                 if (productToAdd.equalsIgnoreCase(p.getName())) {
-                    Product cartProduct = new Product(p.getId(), p.getName(), p.getPrice(), p.getDepartment());
+                    Product cartProduct = new Product(p.getProductId(), p.getDepartmentId(), p.getSku(), p.getName(), p.getPrice());
                     userCart.add(cartProduct);
                     System.out.println("Success! You have added " + p.getName() + " to your cart!");
                 }

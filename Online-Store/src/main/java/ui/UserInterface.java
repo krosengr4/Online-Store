@@ -10,6 +10,7 @@ public class UserInterface {
 					---OPTIONS---
 				1 - Go to Inventory Screen
 				2 - Go to Cart Screen
+				3 - Admin
 				0 - Exit
 				""");
 
