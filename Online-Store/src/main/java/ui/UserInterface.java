@@ -32,7 +32,7 @@ public class UserInterface {
 	}
 
 	public int displayCategories() {
-		System.out.println("\n\t\t--------CATEGORIES--------");
+		System.out.println("\n\t\t--------DEPARTMENTS--------");
 		System.out.println("""
 					---OPTIONS---
 				1 - Audio Video
