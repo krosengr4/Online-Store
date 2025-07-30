@@ -23,13 +23,14 @@ public class UserInterface {
 					---OPTION---
 				1 - Display All Products
 				2 - Display Products By Department
-				3 - Search Product By Name
-				4 - Search Products By Price
-				5 - Add Product To Cart
+				3 - Display All Departments
+				4 - Search Product By Name
+				5 - Search Products By Price
+				6 - Add Product To Cart
 				0 - Return Home
 				""");
 
-		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 4);
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 6);
 	}
 
 	public int displayCategories() {
