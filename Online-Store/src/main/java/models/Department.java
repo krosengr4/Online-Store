@@ -28,6 +28,7 @@ public class Department implements Printable{
 	}
 	//endregion
 
+	@Override
 	public void print() {
 		System.out.println("-----DEPARTMENT-----");
 		System.out.println("Department ID: " + this.departmentId);

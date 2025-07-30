@@ -2,7 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 
-public class OrderLineItems {
+public class OrderLineItems implements Printable {
 
 	int lineItemId;
 	int orderId;
@@ -59,4 +59,15 @@ public class OrderLineItems {
 		this.salesPrice = salesPrice;
 	}
 	//endregion
+
+	@Override
+	public void print() {
+		System.out.println("------ORDER ITEM-----");
+		System.out.println("Line Item ID: " + this.lineItemId);
+		System.out.println("Order ID: " + this.orderId);
+		System.out.println("Product ID: " + this.productId);
+		System.out.println("Quantity: " + this.quantity);
+		System.out.println("Sales Price: $" + this.salesPrice);
+		System.out.println("-------------------------------------------------------------------------");
+	}
 }

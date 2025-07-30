@@ -36,6 +36,7 @@ public class CartItem implements Printable{
 		return product.getPrice() * quantity;
 	}
 
+	@Override
 	public void print() {
 		System.out.println("\t-----CART ITEM-----");
 		System.out.println("Product ID: " + this.product.getProductId());

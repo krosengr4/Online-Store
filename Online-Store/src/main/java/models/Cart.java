@@ -34,6 +34,7 @@ public class Cart implements Printable{
 		return price;
 	}
 
+	@Override
 	public void print() {
 		System.out.println("\t-----YOUR CART-----");
 		System.out.println("-----------------------------------------------");
