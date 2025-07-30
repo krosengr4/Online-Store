@@ -57,4 +57,13 @@ public class Product {
 		this.price = price;
 	}
 	//endregion
+
+	public void print() {
+		System.out.println("-----PRODUCT-----");
+		System.out.println("Product ID: " + this.productId);
+		System.out.println("Department ID: " + this.departmentId);
+		System.out.println("Name: " + this.name);
+		System.out.println("Price: $" + this.price);
+		System.out.println("----------------------------------------------");
+	}
 }
