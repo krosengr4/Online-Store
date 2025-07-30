@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface CartDao {
 
-	List<CartItem> getAll();
+	Cart getCart();
+
+	List<CartItem> getCartItems();
 
 	void add(CartItem item);
 

@@ -1,10 +1,18 @@
 package logic;
 
+import config.DatabaseConfig;
+import data.CartDao;
+import data.mysql.MySqlCartDao;
+import models.Cart;
+import models.CartItem;
 import ui.UserInterface;
+
+import java.util.List;
 
 public class CartLogic {
 
 	static UserInterface ui = new UserInterface();
+	static CartDao cartDao = new MySqlCartDao(DatabaseConfig.setConnection());
 
 	public static void processCartScreen() {
 		boolean ifContinue = true;

@@ -13,7 +13,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MySqlCartDao extends MySqlDaoBase implements CartDao {
 
@@ -24,7 +26,21 @@ public class MySqlCartDao extends MySqlDaoBase implements CartDao {
 	}
 
 	@Override
-	public List<CartItem> getAll() {
+	public Cart getCart() {
+		Map<Integer, CartItem> cartMap = new HashMap<>();
+		List<CartItem> cartItems = getCartItems();
+		Cart cart = new Cart();
+
+		for(CartItem item : cartItems) {
+			cartMap.put(item.getProductId(), item);
+		}
+
+		cart.setItems(cartMap);
+		return cart;
+	}
+
+	@Override
+	public List<CartItem> getCartItems() {
 		List<CartItem> cartItems = new ArrayList<>();
 		String query = "SELECT * FROM cart;";
 

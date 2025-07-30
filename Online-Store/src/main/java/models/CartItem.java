@@ -1,6 +1,6 @@
 package models;
 
-public class CartItem {
+public class CartItem implements Printable{
 
 	private Product product;
 	private int quantity;
@@ -30,5 +30,17 @@ public class CartItem {
 
 	public int getProductId() {
 		return this.product.getProductId();
+	}
+
+	public double getPrice() {
+		return product.getPrice() * quantity;
+	}
+
+	public void print() {
+		System.out.println("-----CART ITEM-----");
+		System.out.println("Product Name: " + this.product.getName());
+		System.out.println("Quantity: " + this.quantity);
+		System.out.println("Price: $" + this.getPrice());
+		System.out.println("-----------------------------------------------");
 	}
 }

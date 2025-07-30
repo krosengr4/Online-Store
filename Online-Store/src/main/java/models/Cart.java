@@ -38,14 +38,6 @@ public class Cart implements Printable{
 		System.out.println("-----YOUR CART-----");
 		System.out.println("-----------------------------------------------");
 
-		for(CartItem item : items.values()) {
-			Product product = item.getProduct();
-
-			System.out.println("---Item---");
-			System.out.println("Product Name: " + product.name);
-			System.out.println("Price: " + product.price);
-		}
-		System.out.println("-----------------------------------------------");
 		System.out.println("Total Items: " + items.size());
 		System.out.println("Total Price: $" + this.getTotal());
 		System.out.println("-----------------------------------------------");
