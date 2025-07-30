@@ -124,6 +124,44 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 		return null;
 	}
 
+	@Override
+	public void deleteLineItems(int orderId) {
+		String query = """
+				DELETE FROM order_line_items
+				WHERE order_id = ?;
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, orderId);
+
+			statement.executeUpdate();
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void deleteOrder(int orderId) {
+		String query = """
+				DELETE FROM orders
+				WHERE order_id = ?;
+				""";
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, orderId);
+
+			int rows = statement.executeUpdate();
+			if(rows > 0)
+				System.out.println("Success! The order was deleted!");
+			else
+				System.err.println("ERROR! Could not delete the order!!!");
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	private Order mapRow(ResultSet result) throws SQLException {
 		int orderId = result.getInt("order_id");
