@@ -6,7 +6,7 @@ public class CartLogic {
 
 	static UserInterface ui = new UserInterface();
 
-	public static void processInventoryScreen() {
+	public static void processCartScreen() {
 		boolean ifContinue = true;
 
 		while(ifContinue) {

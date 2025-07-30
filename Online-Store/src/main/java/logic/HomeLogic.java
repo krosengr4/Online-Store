@@ -11,6 +11,12 @@ public class HomeLogic {
 
 		while(ifContinue) {
 			int userChoice = ui.displayHomePage();
+
+			switch(userChoice) {
+				case 1 -> InventoryLogic.processInventoryScreen();
+				case 2 -> CartLogic.processCartScreen();
+				case 0 -> ifContinue = false;
+			}
 		}
 	}
 }
