@@ -75,4 +75,14 @@ public class UserInterface {
 		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 5);
 	}
 
+	public int displayRemoveItem() {
+		System.out.println("""
+					Would you like to remove all items of this product?
+				1 - Yes
+				2 - No
+				""");
+
+		Utils.getUserInputIntMinMax("Enter Here:\n", 1, 2);
+	}
+
 }
