@@ -71,8 +71,15 @@ public class CartLogic {
 	}
 
 	private static void checkout() {
-//		cartDao.clearCart();
+		Utils.getUserInput("Please enter your card number:\n");
+		Utils.getUserInput("Enter the expiration date:\n");
+		Utils.getUserInput("Enter the 3 digit CVV:\n");
 
+		//todo: Add questions to create an order object here!
+
+		System.out.println("Thank you for your purchase!\nYou will be sent an email of the purchase details shortly!");
+		cartDao.clearCart();
+		Utils.pauseApp();
 	}
 
 	private static void printData(List<CartItem> list) {
