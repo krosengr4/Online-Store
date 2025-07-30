@@ -106,6 +106,20 @@ public class MySqlCartDao extends MySqlDaoBase implements CartDao {
 		}
 	}
 
+	@Override
+	public void clearCart() {
+		String query = "DELETE FROM cart;";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+
+			statement.executeUpdate();
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private CartItem mapRow(ResultSet result) throws SQLException {
 		int productId = result.getInt("product_id");
 		Product product = productDao.getById(productId);

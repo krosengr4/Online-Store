@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b78eaf02-4f9e-4196-812e-84fafd531ce7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/CartLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/CartLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/CartDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlCartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlCartDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -14,4 +14,6 @@ public interface CartDao {
 	void add(CartItem item);
 
 	void remove(int productId);
+
+	void clearCart();
 }
