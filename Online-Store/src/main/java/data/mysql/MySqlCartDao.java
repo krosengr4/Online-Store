@@ -60,6 +60,28 @@ public class MySqlCartDao extends MySqlDaoBase implements CartDao {
 	}
 
 	@Override
+	public CartItem getItemByProductId(int productId) {
+		String query = """
+				SELECT * FROM cart
+				WHERE product_id = ?;
+				""";
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, productId);
+
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				return mapRow(result);
+			}
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return null;
+	}
+
+	@Override
 	public void add(CartItem cartItem) {
 		String query = """
 				INSERT INTO cart (product_id, quantity, price)
@@ -78,6 +100,30 @@ public class MySqlCartDao extends MySqlDaoBase implements CartDao {
 				System.out.println("Success! Item was added to your cart!");
 			else
 				System.err.println("ERROR! Could not add item to your cart!!!");
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Override
+	public void update(int productId, int quantity) {
+		String query = """
+				UPDATE cart
+				SET quantity = ?
+				WHERE product_id = ?;
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, quantity);
+			statement.setInt(2, productId);
+
+			int rows = statement.executeUpdate();
+			if(rows > 0)
+				System.out.println("Success! The cart was updated!");
+			else
+				System.err.println("ERROR! Could not update cart!!!");
 
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
