@@ -12,7 +12,28 @@ public class InventoryLogic {
 		while(ifContinue) {
 			int userChoice = ui.displayCart();
 
-
+			switch(userChoice) {
+				case 1 -> displayAll();
+				case 2 -> displayByCategory();
+				case 3 -> searchByName();
+				case 0 -> ifContinue = false;
+			}
 		}
+	}
+
+	private static void displayAll() {
+
+	}
+
+	private static void displayByCategory() {
+
+	}
+
+	private static void searchByName() {
+
+	}
+
+	private static void addToCart() {
+
 	}
 }
