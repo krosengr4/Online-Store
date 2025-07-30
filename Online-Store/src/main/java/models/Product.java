@@ -1,6 +1,6 @@
 package models;
 
-public class Product {
+public class Product implements Printable{
 
 	int productId;
 	int departmentId;

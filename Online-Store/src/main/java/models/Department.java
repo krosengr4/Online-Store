@@ -1,6 +1,6 @@
 package models;
 
-public class Department {
+public class Department implements Printable{
 
 	int departmentId;
 	String name;
