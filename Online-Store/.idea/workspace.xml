@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b78eaf02-4f9e-4196-812e-84fafd531ce7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/HomeLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/HomeLogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/data/DepartmentDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlDepartmentDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +16,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
