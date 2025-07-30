@@ -8,7 +8,6 @@ import data.mysql.MySqlCartDao;
 import data.mysql.MySqlDepartmentDao;
 import data.mysql.MySqlProductDao;
 import models.CartItem;
-import models.Department;
 import models.Printable;
 import models.Product;
 import ui.UserInterface;
@@ -27,7 +26,7 @@ public class InventoryLogic {
 		boolean ifContinue = true;
 
 		while(ifContinue) {
-			int userChoice = ui.displayCart();
+			int userChoice = ui.displayInventory();
 
 			switch(userChoice) {
 				case 1 -> displayAll();
