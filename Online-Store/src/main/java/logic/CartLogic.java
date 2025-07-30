@@ -2,16 +2,17 @@ package logic;
 
 import config.DatabaseConfig;
 import data.CartDao;
+import data.OrderDao;
 import data.ProductDao;
 import data.mysql.MySqlCartDao;
+import data.mysql.MySqlOrderDao;
 import data.mysql.MySqlProductDao;
-import models.Cart;
-import models.CartItem;
-import models.Printable;
-import models.Product;
+import models.*;
 import ui.UserInterface;
 import utils.Utils;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CartLogic {
@@ -19,6 +20,7 @@ public class CartLogic {
 	static UserInterface ui = new UserInterface();
 	static CartDao cartDao = new MySqlCartDao(DatabaseConfig.setConnection());
 	static ProductDao productDao = new MySqlProductDao(DatabaseConfig.setConnection());
+	static OrderDao orderDao = new MySqlOrderDao(DatabaseConfig.setConnection());
 
 	public static void processCartScreen() {
 		boolean ifContinue = true;
@@ -71,15 +73,34 @@ public class CartLogic {
 	}
 
 	private static void checkout() {
-		Utils.getUserInput("Please enter your card number:\n");
+		String customerName = Utils.getUserInput("Please your name for the order:\n");
+
+		Utils.getUserInput("Enter your card number:\n");
 		Utils.getUserInput("Enter the expiration date:\n");
 		Utils.getUserInput("Enter the 3 digit CVV:\n");
 
-		//todo: Add questions to create an order object here!
+		String userAddress = Utils.getUserInput("Enter your address:\n");
+		String userCity = Utils.getUserInput("Enter your city:\n");
+		String userState = Utils.getUserInput("Enter your state:\n");
+
+		Order order = new Order(0, LocalDateTime.now(), customerName, userAddress, userCity, userState);
+		Order addedOrder = orderDao.add(order);
+
+		addLineItems(addedOrder);
 
 		System.out.println("Thank you for your purchase!\nYou will be sent an email of the purchase details shortly!");
 		cartDao.clearCart();
 		Utils.pauseApp();
+	}
+
+	private static void addLineItems(Order order) {
+		int orderId = order.getOrderId();
+		List<CartItem> cartItems = cartDao.getCartItems();
+
+		for(CartItem item : cartItems) {
+			OrderLineItems lineItem = new OrderLineItems(0, order.getOrderId(), item.getProductId(), item.getQuantity(), BigDecimal.valueOf(item.getPrice()));
+			orderDao.addLineItem(lineItem);
+		}
 	}
 
 	private static void printData(List<CartItem> list) {

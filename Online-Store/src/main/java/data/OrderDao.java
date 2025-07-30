@@ -15,6 +15,8 @@ public interface OrderDao {
 
 	Order add(Order order);
 
+	void addLineItem(OrderLineItems lineItem);
+
 	void deleteLineItems(int orderId);
 
 	void deleteOrder(int orderId);
