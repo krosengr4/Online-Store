@@ -19,8 +19,8 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
-	public List<Product> getAll() {
-		List<Product> productsList = new ArrayList<>();
+	public List<Printable> getAll() {
+		List<Printable> productsList = new ArrayList<>();
 		String query = "SELECT * FROM products;";
 
 		try(Connection connection = getConnection()) {

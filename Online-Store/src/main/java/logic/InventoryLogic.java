@@ -9,6 +9,7 @@ import data.mysql.MySqlDepartmentDao;
 import data.mysql.MySqlProductDao;
 import models.CartItem;
 import models.Department;
+import models.Printable;
 import models.Product;
 import ui.UserInterface;
 import utils.Utils;
@@ -41,7 +42,7 @@ public class InventoryLogic {
 	}
 
 	private static void displayAll() {
-		List<Product> productList = productDao.getAll();
+		List<Printable> productList = productDao.getAll();
 
 		printData(productList);
 	}
@@ -49,28 +50,20 @@ public class InventoryLogic {
 	private static void displayByDepartment() {
 		int departmentChoice = Utils.getUserInputInt("Enter the department ID:\n");
 
-		List<Product> productList = productDao.getByDepartment(departmentChoice);
+		List<Printable> productList = productDao.getByDepartment(departmentChoice);
 		printData(productList);
 	}
 
 	private static void displayAllDepartments() {
-		List<Department> departmentList = departmentDao.getAll();
+		List<Printable> departmentList = departmentDao.getAll();
 
-		if(departmentList.isEmpty()) {
-			System.out.println("There are no departments to display...");
-		} else {
-			for(Department department : departmentList) {
-				department.print();
-			}
-		}
-
-		Utils.pauseApp();
+		printData(departmentList);
 	}
 
 	private static void searchByName() {
 		String productSearch = Utils.getUserInput("Enter the name of the product:\n");
 
-		List<Product> productList = productDao.searchByName(productSearch);
+		List<Printable> productList = productDao.searchByName(productSearch);
 		printData(productList);
 	}
 
@@ -78,7 +71,7 @@ public class InventoryLogic {
 		double minPrice = Utils.getUserInputDouble("Enter the minimum price:\n$");
 		double maxPrice = Utils.getUserInputDouble("Enter the maximum price:\n$");
 
-		List<Product> productList = productDao.searchByPrice(minPrice, maxPrice);
+		List<Printable> productList = productDao.searchByPrice(minPrice, maxPrice);
 		printData(productList);
 	}
 
@@ -92,12 +85,12 @@ public class InventoryLogic {
 		cartDao.add(cartItem);
 	}
 
-	private static void printData(List<Product> productList) {
-		if(productList.isEmpty()) {
+	private static void printData(List<Printable> list) {
+		if(list.isEmpty()) {
 			System.out.println("There are no products to display...");
 		} else {
-			for(Product product : productList) {
-				product.print();
+			for(Printable item : list) {
+				item.print();
 			}
 		}
 
