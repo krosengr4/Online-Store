@@ -1,8 +1,9 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-public class Order {
+public class Order implements Printable {
 
 	int orderId;
 	LocalDateTime dateTime;
@@ -71,4 +72,14 @@ public class Order {
 		this.city = city;
 	}
 	//endregion
+
+	public void print() {
+		System.out.printf("--------ORDER FOR %s--------\n", this.customerName.toUpperCase());
+		System.out.println("Order ID: " + this.orderId);
+		System.out.println("Date and Time: " + this.dateTime);
+		System.out.println("Address: " + this.address);
+		System.out.println("City: " + this.city);
+		System.out.println("State: " + this.state);
+		System.out.println("--------------------------------------------------------");
+	}
 }
