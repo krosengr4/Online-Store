@@ -4,10 +4,10 @@ import data.OrderDao;
 import models.Order;
 
 import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 
@@ -17,9 +17,25 @@ public class MySqlOrderDao extends MySqlDaoBase implements OrderDao {
 		super(dataSource);
 	}
 
+	@Override
+	public List<Order> getAll() {
+		List<Order> orderList = new ArrayList<>();
+		String query = "SELECT * FROM orders;";
 
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
 
+			ResultSet results = statement.executeQuery();
+			while(results.next()) {
+				orderList.add(mapRow(results));
+			}
 
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return orderList;
+	}
 
 
 	private Order mapRow(ResultSet result) throws SQLException {
