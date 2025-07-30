@@ -1,12 +1,15 @@
 package data;
 
 import models.Cart;
+import models.CartItem;
+
+import java.util.List;
 
 public interface CartDao {
 
-	Cart getAll();
+	List<CartItem> getAll();
 
-	void add();
+	void add(CartItem item);
 
-	void remove();
+	void remove(int productId);
 }
