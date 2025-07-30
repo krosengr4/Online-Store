@@ -1,10 +1,13 @@
 package logic;
 
 import config.DatabaseConfig;
+import data.CartDao;
 import data.DepartmentDao;
 import data.ProductDao;
+import data.mysql.MySqlCartDao;
 import data.mysql.MySqlDepartmentDao;
 import data.mysql.MySqlProductDao;
+import models.CartItem;
 import models.Department;
 import models.Product;
 import ui.UserInterface;
@@ -17,6 +20,7 @@ public class InventoryLogic {
 	static UserInterface ui = new UserInterface();
 	static ProductDao productDao = new MySqlProductDao(DatabaseConfig.setConnection());
 	static DepartmentDao departmentDao = new MySqlDepartmentDao(DatabaseConfig.setConnection());
+	static CartDao cartDao = new MySqlCartDao(DatabaseConfig.setConnection());
 
 	public static void processInventoryScreen() {
 		boolean ifContinue = true;
@@ -79,7 +83,13 @@ public class InventoryLogic {
 	}
 
 	private static void addToCart() {
+		int productId = Utils.getUserInputInt("Enter the Product ID:\n");
+		int quantity = Utils.getUserInputInt("Enter the quantity:\n");
 
+		Product product = productDao.getById(productId);
+		CartItem cartItem = new CartItem(product, quantity);
+
+		cartDao.add(cartItem);
 	}
 
 	private static void printData(List<Product> productList) {
