@@ -17,7 +17,7 @@ public interface ProductDao {
 
 	List<Printable> searchByPrice(double minPrice, double maxPrice);
 
-	void add(Product product);
+	Product add(Product product);
 
 	void update(int productId, Product product);
 

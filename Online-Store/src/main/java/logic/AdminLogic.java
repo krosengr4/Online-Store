@@ -36,7 +36,15 @@ public class AdminLogic {
 
 	private static void addProduct() {
 		int departmentId = Utils.getUserInputInt("Enter the department ID:\n");
+		String productName = Utils.getUserInput("Enter the product name:\n");
+		double price = Utils.getUserInputDouble("Enter the price:\n$");
 
+		Product product = productDao.add(new Product(0, departmentId, productName, price));
+		if(product != null) {
+			product.print();
+		}
+
+		Utils.pauseApp();
 	}
 
 	private static void updateProduct() {}
