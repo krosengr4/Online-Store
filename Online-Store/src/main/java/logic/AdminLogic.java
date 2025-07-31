@@ -1,14 +1,15 @@
 package logic;
 
 import config.DatabaseConfig;
+import data.DepartmentDao;
 import data.ProductDao;
+import data.mysql.MySqlDepartmentDao;
 import data.mysql.MySqlProductDao;
+import models.Department;
 import models.Product;
 import org.apache.commons.dbcp2.BasicDataSource;
 import ui.UserInterface;
 import utils.Utils;
-
-import java.sql.Connection;
 
 public class AdminLogic {
 
@@ -16,6 +17,7 @@ public class AdminLogic {
 
 	static BasicDataSource dataSource = DatabaseConfig.setConnection();
 	static ProductDao productDao = new MySqlProductDao(dataSource);
+	static DepartmentDao departmentDao = new MySqlDepartmentDao(dataSource);
 
 	public static void processAdminScreen() {
 		boolean ifContinue = true;
@@ -27,8 +29,8 @@ public class AdminLogic {
 				case 1 -> addProduct();
 				case 2 -> updateProduct();
 				case 3 -> deleteProduct();
-				case 4 -> addCategory();
-				case 5 -> deleteCategory();
+				case 4 -> addDepartment();
+				case 5 -> deleteDepartment();
 				case 0 -> ifContinue = false;
 			}
 		}
@@ -81,10 +83,24 @@ public class AdminLogic {
 
 	}
 
-	private static void deleteProduct() {}
+	private static void deleteProduct() {
+		int productId = Utils.getUserInputInt("Enter the product ID to delete:\n");
+		productDao.delete(productId);
 
-	private static void addCategory() {}
+		Utils.pauseApp();
+	}
 
-	private static void deleteCategory() {}
+	private static void addDepartment() {
+		String departmentName = Utils.getUserInput("Enter the name of the new department:\n").trim().toLowerCase();
+		Department department = departmentDao.add(new Department(0, departmentName));
+
+		if(department != null) {
+			department.print();
+		}
+
+		Utils.pauseApp();
+	}
+
+	private static void deleteDepartment() {}
 
 }

@@ -67,8 +67,8 @@ public class UserInterface {
 				1 - Add A Product
 				2 - Update Product
 				3 - Delete Product
-				4 - Add A Category
-				5 - Delete A Category
+				4 - Add A Department
+				5 - Delete A Department
 				0 - Return Home
 				""");
 
