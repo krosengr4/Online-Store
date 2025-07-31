@@ -101,6 +101,11 @@ public class AdminLogic {
 		Utils.pauseApp();
 	}
 
-	private static void deleteDepartment() {}
+	private static void deleteDepartment() {
+		int departmentId = Utils.getUserInputInt("Enter the ID of the department to delete:\n");
+		departmentDao.delete(departmentId);
+
+		Utils.pauseApp();
+	}
 
 }
