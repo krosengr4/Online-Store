@@ -1,10 +1,20 @@
 package logic;
 
+import config.DatabaseConfig;
+import data.ProductDao;
+import data.mysql.MySqlProductDao;
+import models.Product;
+import org.apache.commons.dbcp2.BasicDataSource;
 import ui.UserInterface;
+
+import java.sql.Connection;
 
 public class AdminLogic {
 
 	static UserInterface ui = new UserInterface();
+
+	static BasicDataSource dataSource = DatabaseConfig.setConnection();
+	static ProductDao productDao = new MySqlProductDao(dataSource);
 
 	public static void processAdminScreen() {
 		boolean ifContinue = true;

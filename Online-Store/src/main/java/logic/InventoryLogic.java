@@ -10,6 +10,7 @@ import data.mysql.MySqlProductDao;
 import models.CartItem;
 import models.Printable;
 import models.Product;
+import org.apache.commons.dbcp2.BasicDataSource;
 import ui.UserInterface;
 import utils.Utils;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class InventoryLogic {
 
 	static UserInterface ui = new UserInterface();
-	static ProductDao productDao = new MySqlProductDao(DatabaseConfig.setConnection());
-	static DepartmentDao departmentDao = new MySqlDepartmentDao(DatabaseConfig.setConnection());
-	static CartDao cartDao = new MySqlCartDao(DatabaseConfig.setConnection());
+
+	static BasicDataSource dataSource = DatabaseConfig.setConnection();
+	static ProductDao productDao = new MySqlProductDao(dataSource);
+	static DepartmentDao departmentDao = new MySqlDepartmentDao(dataSource);
+	static CartDao cartDao = new MySqlCartDao(dataSource);
 
 	public static void processInventoryScreen() {
 		boolean ifContinue = true;
