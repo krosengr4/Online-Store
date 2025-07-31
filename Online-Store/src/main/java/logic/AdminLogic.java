@@ -47,7 +47,39 @@ public class AdminLogic {
 		Utils.pauseApp();
 	}
 
-	private static void updateProduct() {}
+	private static void updateProduct() {
+		int productId = Utils.getUserInputInt("Enter the ID of the product to update:\n");
+		int userChoice = ui.displayUpdateProduct();
+
+		Product product = productDao.getById(productId);
+
+		switch(userChoice) {
+			case 1: {
+				int newDepartment = Utils.getUserInputInt("Enter the new department ID:\n");
+				product.setDepartmentId(newDepartment);
+
+				break;
+			}
+			case 2: {
+				String newName = Utils.getUserInput("Enter the new product name:\n").trim();
+				product.setName(newName);
+
+				break;
+			}
+			case 3: {
+				double newPrice = Utils.getUserInputDouble("Enter the new price:\n$");
+				product.setPrice(newPrice);
+
+				break;
+			}
+		}
+
+		if(userChoice != 0) {
+			productDao.update(productId, product);
+			Utils.pauseApp();
+		}
+
+	}
 
 	private static void deleteProduct() {}
 
