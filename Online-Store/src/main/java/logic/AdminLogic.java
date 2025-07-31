@@ -6,6 +6,7 @@ import data.mysql.MySqlProductDao;
 import models.Product;
 import org.apache.commons.dbcp2.BasicDataSource;
 import ui.UserInterface;
+import utils.Utils;
 
 import java.sql.Connection;
 
@@ -33,7 +34,10 @@ public class AdminLogic {
 		}
 	}
 
-	private static void addProduct() {}
+	private static void addProduct() {
+		int departmentId = Utils.getUserInputInt("Enter the department ID:\n");
+
+	}
 
 	private static void updateProduct() {}
 

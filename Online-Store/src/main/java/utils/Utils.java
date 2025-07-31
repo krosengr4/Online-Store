@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Utils {
 
-    public static String filePath = "Online-Store/src/main/resources/products.csv";
-
     static Scanner myScanner = new Scanner(System.in);
 
 	// Prompts user, gets user input, returns user input as a string

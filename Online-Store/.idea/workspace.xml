@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b78eaf02-4f9e-4196-812e-84fafd531ce7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/logic/CartLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/CartLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/onlinestore-queries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/onlinestore-queries.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/mysql/MySqlProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/AdminLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/AdminLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/products.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

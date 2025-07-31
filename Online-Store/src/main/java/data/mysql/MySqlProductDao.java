@@ -139,16 +139,15 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	@Override
 	public void add(Product product) {
 		String query = """
-				INSERT INTO products (department_id, SKU, name, price)
-				VALUES (?, ?, ?, ?);
+				INSERT INTO products (department_id, name, price)
+				VALUES (?, ?, ?);
 				""";
 
 		try(Connection connection = getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, product.getDepartmentId());
-			statement.setString(2, product.getSku());
-			statement.setString(3, product.getName());
-			statement.setDouble(4, product.getPrice());
+			statement.setString(2, product.getName());
+			statement.setDouble(3, product.getPrice());
 
 			int rows = statement.executeUpdate();
 			if(rows > 0)
@@ -166,7 +165,6 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 		String query = """
 				UPDATE products
 				SET department_id = ?,
-				SKU = ?,
 				name = ?,
 				price = ?
 				WHERE product_id = ?;
@@ -175,10 +173,9 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 		try(Connection connection = getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, product.getDepartmentId());
-			statement.setString(2, product.getSku());
-			statement.setString(3, product.getName());
-			statement.setDouble(4, product.getPrice());
-			statement.setInt(5, productId);
+			statement.setString(2, product.getName());
+			statement.setDouble(3, product.getPrice());
+			statement.setInt(4, productId);
 
 			int rows = statement.executeUpdate();
 			if(rows > 0)
@@ -216,11 +213,10 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	private Product mapRow(ResultSet result) throws SQLException {
 		int productId = result.getInt("product_id");
 		int departmentId = result.getInt("department_id");
-		String sku = result.getString("SKU");
 		String name = result.getString("name");
 		double price = result.getDouble("price");
 
-		return new Product(productId, departmentId, sku, name, price);
+		return new Product(productId, departmentId, name, price);
 	}
 
 }

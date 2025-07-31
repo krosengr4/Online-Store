@@ -6,7 +6,6 @@ use online_store;
 CREATE TABLE products(
 	product_id INT NOT NULL AUTO_INCREMENT,
     department_id INT NOT NULL,
-    SKU varchar(30) NOT NULL,
     name VARCHAR(50) NOT NULL,
     price DOUBLE NOT NULL,
     PRIMARY KEY(product_id)
@@ -49,16 +48,16 @@ CREATE TABLE order_line_items(
 INSERT INTO departments (name)
 VALUES ('audio-video'), ('computers'), ('games'), ('electronics'), ('toiletries');
  
-insert into products (SKU, name, price, department_id)
-VALUES ('AV1051', 'JBL Bluetooth Speaker', 89.95, 1),
-('AV1312', 'Mini 1000 Lumens Projector', 149.95, 1),
-('AV1412', 'XLR Podcast Cardiod Mic', 44.99, 1),
-('CP2012', 'Desktop PC Computer Intel Core i5', 139.00, 2),
-('CP2123', 'Wired Backlit Keyboard', 21.99, 2),
-('CP2154', 'RGB Wireless Gaming Mouse', 67.49, 2),
-('GM1032', 'Telestrations Board Game', 17.99, 3),
-('GM1075', 'Battleship Board Game', 12.99, 3),
-('GM1148', 'Retro Handheld Arcade', 24.45, 3),
-('PW1255', 'USB C to A Cable', 13.95, 4),
-('PW1341', 'Solar Powered Battery Charger', 19.99, 4),
-('PW1431', 'Wireless Charger iPhone', 12.99, 4);
+insert into products (name, price, department_id)
+VALUES ('JBL Bluetooth Speaker', 89.95, 1),
+('Mini 1000 Lumens Projector', 149.95, 1),
+('XLR Podcast Cardiod Mic', 44.99, 1),
+('Desktop PC Computer Intel Core i5', 139.00, 2),
+('Wired Backlit Keyboard', 21.99, 2),
+('RGB Wireless Gaming Mouse', 67.49, 2),
+('Telestrations Board Game', 17.99, 3),
+('Battleship Board Game', 12.99, 3),
+('Retro Handheld Arcade', 24.45, 3),
+('USB C to A Cable', 13.95, 4),
+('Solar Powered Battery Charger', 19.99, 4),
+('Wireless Charger iPhone', 12.99, 4);
