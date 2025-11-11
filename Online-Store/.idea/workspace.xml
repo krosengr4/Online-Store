@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b78eaf02-4f9e-4196-812e-84fafd531ce7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/java/logic/AdminLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/logic/AdminLogic.java" afterDir="false" />
+>>>>>>> 84a31af61fae5f28625e508d6d80fdcd1521dda8
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

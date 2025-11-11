@@ -5,10 +5,7 @@ import models.Department;
 import models.Printable;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,25 +36,58 @@ public class MySqlDepartmentDao extends MySqlDaoBase implements DepartmentDao {
 	}
 
 	@Override
-	public void add(Department department) {
+	public Department getById(int departmentId) {
+		String query = """
+				SELECT * FROM departments
+				WHERE department_id = ?;
+				""";
+
+		try(Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setInt(1, departmentId);
+
+			ResultSet result = statement.executeQuery();
+			if(result.next()) {
+				return mapRow(result);
+			} else {
+				System.out.println("Could not find department with that ID...");
+			}
+
+		} catch(SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return null;
+	}
+
+	@Override
+	public Department add(Department department) {
 		String query = """
 				INSERT INTO departments (name)
 				VALUES (?);
 				""";
 
 		try(Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(query);
+			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, department.getName());
 
 			int rows = statement.executeUpdate();
-			if(rows > 0)
+			if(rows > 0) {
 				System.out.println("Success! Department was created!");
-			else
+
+				ResultSet key = statement.getGeneratedKeys();
+				if(key.next()) {
+					int departmentId = key.getInt(1);
+					return getById(departmentId);
+				}
+			} else {
 				System.err.println("ERROR! Could not create new department!!!");
+			}
 
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
+		return null;
 	}
 
 	@Override

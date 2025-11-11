@@ -9,7 +9,9 @@ public interface DepartmentDao {
 
 	List<Printable> getAll();
 
-	void add(Department department);
+	Department getById(int departmentId);
+
+	Department add(Department department);
 
 	void delete(int departmentId);
 

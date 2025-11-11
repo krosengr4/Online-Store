@@ -67,12 +67,25 @@ public class UserInterface {
 				1 - Add A Product
 				2 - Update Product
 				3 - Delete Product
-				4 - Add A Category
-				5 - Delete A Category
+				4 - Add A Department
+				5 - Delete A Department
 				0 - Return Home
 				""");
 
 		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 5);
+	}
+
+	public int displayUpdateProduct() {
+		System.out.println("\n\t\t--------UPDATE PRODUCT--------");
+		System.out.println("""
+					WHAT WOULD YOU LIKE TO UPDATE?
+				1 - Update department
+				2 - Update product name
+				3 - Update price
+				0 - Go back
+				""");
+
+		return Utils.getUserInputIntMinMax("Enter Here:\n", 0, 3);
 	}
 
 	public int displayRemoveItem() {

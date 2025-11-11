@@ -8,6 +8,7 @@ import data.mysql.MySqlCartDao;
 import data.mysql.MySqlOrderDao;
 import data.mysql.MySqlProductDao;
 import models.*;
+import org.apache.commons.dbcp2.BasicDataSource;
 import ui.UserInterface;
 import utils.Utils;
 
@@ -18,9 +19,11 @@ import java.util.List;
 public class CartLogic {
 
 	static UserInterface ui = new UserInterface();
-	static CartDao cartDao = new MySqlCartDao(DatabaseConfig.setConnection());
-	static ProductDao productDao = new MySqlProductDao(DatabaseConfig.setConnection());
-	static OrderDao orderDao = new MySqlOrderDao(DatabaseConfig.setConnection());
+
+	static BasicDataSource dataSource = DatabaseConfig.setConnection();
+	static CartDao cartDao = new MySqlCartDao(dataSource);
+	static ProductDao productDao = new MySqlProductDao(dataSource);
+	static OrderDao orderDao = new MySqlOrderDao(dataSource);
 
 	public static void processCartScreen() {
 		boolean ifContinue = true;

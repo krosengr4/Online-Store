@@ -5,10 +5,7 @@ import models.Printable;
 import models.Product;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -137,28 +134,36 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	}
 
 	@Override
-	public void add(Product product) {
+	public Product add(Product product) {
 		String query = """
-				INSERT INTO products (department_id, SKU, name, price)
-				VALUES (?, ?, ?, ?);
+				INSERT INTO products (department_id, name, price)
+				VALUES (?, ?, ?);
 				""";
 
 		try(Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement(query);
+			PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, product.getDepartmentId());
-			statement.setString(2, product.getSku());
-			statement.setString(3, product.getName());
-			statement.setDouble(4, product.getPrice());
+			statement.setString(2, product.getName());
+			statement.setDouble(3, product.getPrice());
 
 			int rows = statement.executeUpdate();
-			if(rows > 0)
+			if(rows > 0) {
 				System.out.println("Success! The new product was added!");
-			else
+				ResultSet key = statement.getGeneratedKeys();
+				if(key.next()) {
+					int productId = key.getInt(1);
+					return getById(productId);
+				}
+
+			} else {
 				System.err.println("ERROR! Could not add product!!!");
+			}
 
 		} catch(SQLException e) {
 			throw new RuntimeException(e);
 		}
+
+		return null;
 	}
 
 	@Override
@@ -166,7 +171,6 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 		String query = """
 				UPDATE products
 				SET department_id = ?,
-				SKU = ?,
 				name = ?,
 				price = ?
 				WHERE product_id = ?;
@@ -175,10 +179,9 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 		try(Connection connection = getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setInt(1, product.getDepartmentId());
-			statement.setString(2, product.getSku());
-			statement.setString(3, product.getName());
-			statement.setDouble(4, product.getPrice());
-			statement.setInt(5, productId);
+			statement.setString(2, product.getName());
+			statement.setDouble(3, product.getPrice());
+			statement.setInt(4, productId);
 
 			int rows = statement.executeUpdate();
 			if(rows > 0)
@@ -216,11 +219,10 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao {
 	private Product mapRow(ResultSet result) throws SQLException {
 		int productId = result.getInt("product_id");
 		int departmentId = result.getInt("department_id");
-		String sku = result.getString("SKU");
 		String name = result.getString("name");
 		double price = result.getDouble("price");
 
-		return new Product(productId, departmentId, sku, name, price);
+		return new Product(productId, departmentId, name, price);
 	}
 
 }
